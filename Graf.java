@@ -49,4 +49,28 @@ public class Graf {
 			}
 		}
 	}
+
+
+
+	public Node df_topo(Node n, Node l){
+		Topo_lst nd= (Topo_lst)n.d;
+		if(nd.funnet)return l;
+		nd.funnet=true;
+		for(Kant k = n.kant1; k!=null; k=k.neste){
+			l=df_topo(k.til,l);
+		}
+		nd.neste=l;
+		return n;
+	}
+
+	public Node topologisort(){
+		Node l=null;
+		for(int i=N; i-->0;){
+			node[i].d= new Topo_lst();
+		}
+		for(int i=N; i-->0;){
+			l=df_topo(node[i],l);
+		}
+		return l;
+	}
 }
