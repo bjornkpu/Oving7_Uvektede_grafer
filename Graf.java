@@ -1,6 +1,8 @@
 package Oving7_Uvektede_grafer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 /**
  * @author Bjørn Kristian Punsvik
@@ -27,22 +29,22 @@ public class Graf {
 	}
 
 	public void initforgj(Node s) {
-		for (int i = N; i-- > 0;) {
+		for (int i = N; i-- > 0; ) {
 			node[i].d = new Forgj();
 		}
-		((Forgj)s.d).dist = 0;
+		((Forgj) s.d).dist = 0;
 	}
 
 	public void bfs(Node s) {
 		initforgj(s);
-		Queue queue = new Queue(N -1);
+		Queue queue = new Queue(N - 1);
 		queue.leggIKø(s);
-		while(!queue.tom()) {
+		while (!queue.tom()) {
 			Node n = (Node) queue.nesteIKø();
-			for(Kant k = n.kant1; k != null; k = k.neste) {
-				Forgj f = (Forgj)k.til.d;
-				if(f.dist == f.uendelig) {
-					f.dist = ((Forgj)n.d).dist + 1;
+			for (Kant k = n.kant1; k != null; k = k.neste) {
+				Forgj f = (Forgj) k.til.d;
+				if (f.dist == f.uendelig) {
+					f.dist = ((Forgj) n.d).dist + 1;
 					f.forgj = n;
 					queue.leggIKø(k.til);
 				}
@@ -50,26 +52,42 @@ public class Graf {
 		}
 	}
 
-
-
-	public Node df_topo(Node n, Node l){
-		Topo_lst nd= (Topo_lst)n.d;
-		if(nd.funnet)return l;
-		nd.funnet=true;
-		for(Kant k = n.kant1; k!=null; k=k.neste){
-			l=df_topo(k.til,l);
+	public void printBFS() {
+		Node n;
+		for (int i = 0; i < node.length; i++) {
+			n = node[i];
+			Forgj fj= (Forgj)n.d;
+			int f = Arrays.asList(node).indexOf(fj.forgj);
+			String ut;
+			if (f < 0) {
+				ut=" ";
+			} else {
+				ut=""+f;
+			}
+			System.out.println(i + "          "
+					+ut + "         "
+					+ fj.dist);
 		}
-		nd.neste=l;
+	}
+
+	public Node df_topo(Node n, Node l) {
+		Topo_lst nd = (Topo_lst) n.d;
+		if (nd.funnet) return l;
+		nd.funnet = true;
+		for (Kant k = n.kant1; k != null; k = k.neste) {
+			l = df_topo(k.til, l);
+		}
+		nd.neste = l;
 		return n;
 	}
 
-	public Node topologisort(){
-		Node l=null;
-		for(int i=N; i-->0;){
-			node[i].d= new Topo_lst();
+	public Node topologisort() {
+		Node l = null;
+		for (int i = N; i-- > 0; ) {
+			node[i].d = new Topo_lst();
 		}
-		for(int i=N; i-->0;){
-			l=df_topo(node[i],l);
+		for (int i = N; i-- > 0; ) {
+			l = df_topo(node[i], l);
 		}
 		return l;
 	}
