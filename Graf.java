@@ -1,5 +1,7 @@
 package Oving7_Uvektede_grafer;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -90,5 +92,15 @@ public class Graf {
 			l = df_topo(node[i], l);
 		}
 		return l;
+	}
+
+	public void printTopo(){
+		Node l = topologisort();
+
+//		int nodeId = Arrays.asList(node).indexOf(l);
+
+		for(Node i = l; i!=null; i=((Topo_lst)i.d).neste ){
+			System.out.println(Arrays.asList(node).indexOf(i));
+		}
 	}
 }
