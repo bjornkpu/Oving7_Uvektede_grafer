@@ -4,5 +4,10 @@ package Oving7_Uvektede_grafer;
  */
 public class Node {
 	Kant kant1;
-	Object d; //Andre nodedata
+	int index;
+	Forgj d; //Andre nodedata
+
+	public Node(int index) {
+		this.index = index;
+	}
 }

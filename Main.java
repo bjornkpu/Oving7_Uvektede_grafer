@@ -19,6 +19,16 @@ public class Main {
 			Graf g = new Graf();
 			g.ny_ugraf(reader);
 
+			System.out.println("Node    "+"Forgj    "+"Dist");
+			g.bfs(g.node[5]);
+			g.printBFS();
+
+
+
+
+
+
+
 			String line;
 			while ((line = reader.readLine()) != null) {
 				System.out.println(line);
