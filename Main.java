@@ -18,21 +18,17 @@ public class Main {
 
 			Graf g = new Graf();
 			g.ny_ugraf(reader);
+			//Utfører bredde-Først-Søk og skriver denne ut
+			int StartNode = 5;
 
 			System.out.println("Node    "+"Forgj    "+"Dist");
-			g.bfs(g.node[5]);
+			g.bfs(g.node[StartNode]);
 			g.printBFS();
 
+			//Utfører topologisk sorteringog skriver denne ut
 
 
 
-
-
-
-			String line;
-			while ((line = reader.readLine()) != null) {
-				System.out.println(line);
-			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
