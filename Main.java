@@ -14,6 +14,7 @@ public class Main {
 
 		try {
 			File file = new File("src/Oving7_Uvektede_grafer/grafer/L7g5");
+//			File file = new File("src/Oving7_Uvektede_grafer/grafer/L7g1.txt");
 			reader = new BufferedReader(new FileReader(file));
 
 			Graf g = new Graf();
