@@ -13,7 +13,7 @@ public class Main {
 		BufferedReader reader = null;
 
 		try {
-			File file = new File("src/Oving7_Uvektede_grafer/grafer/L7g1.txt");
+			File file = new File("src/Oving7_Uvektede_grafer/grafer/L7g5");
 			reader = new BufferedReader(new FileReader(file));
 
 			Graf g = new Graf();
@@ -21,10 +21,11 @@ public class Main {
 			//Utfører bredde-Først-Søk og skriver denne ut
 			int StartNode = 5;
 
-			System.out.println("Node    "+"Forgj    "+"Dist");
-			g.bfs(g.node[StartNode]);
-			g.printBFS();
+//			System.out.println("Node    "+"Forgj    "+"Dist");
+//			g.bfs(g.node[StartNode]);
+//			g.printBFS();
 
+			g.printTopo();
 			//Utfører topologisk sorteringog skriver denne ut
 
 
